@@ -477,4 +477,21 @@ vows.describe('jitsu/commands/logs').addBatch({
           }
         }, { 'x-powered-by': 'Nodejitsu' });
   })
+}).addBatch({
+  'logs app example-app stream': shouldNodejitsuOk('should prompt for credentials', function setup() {
+
+    useAppFixture();
+
+    jitsu.config.stores.file.file = path.join(__dirname, '..', 'fixtures', 'logged-out-jitsuconf');
+    jitsu.config.stores.file.loadSync();
+
+    jitsu.prompt.override.username = 'tester';
+    jitsu.prompt.override.password = 'EXAMPLE-PASSWORD';
+
+    nock('http://api.mockjitsu.com')
+      .post('/logs/tester/example-app/stream', {})
+        .reply(200, {
+          data: 'here are some logs\nenjoy them.'
+        }, { 'x-powered-by': 'Nodejitsu' })
+  })
 }).export(module);
