@@ -489,9 +489,12 @@ vows.describe('jitsu/commands/logs').addBatch({
     jitsu.prompt.override.password = 'EXAMPLE-PASSWORD';
 
     nock('http://api.mockjitsu.com')
-      .post('/logs/tester/example-app/stream', {})
+      .get('/logs/tester/example-app/stream')
         .reply(200, {
-          data: 'here are some logs\nenjoy them.'
+          app: 'example-app',
+          user: 'tester',
+          data: 'Testing my app.1334857998687\n',
+          name: 'stdout'
         }, { 'x-powered-by': 'Nodejitsu' })
   })
 }).export(module);
