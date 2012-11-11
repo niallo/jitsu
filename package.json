@@ -36,7 +36,7 @@
     "spawn-command": "0.0.2",
     "semver": "1.0.14",
     "tar": "0.1.13",
-    "wizard": "0.0.1",
+    "wizard": "git://github.com/niallo/wizard",
     "ladder": "0.0.0",
     "progress": "0.1.0"
   },
